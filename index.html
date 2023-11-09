@@ -3,131 +3,127 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
     <script src="https://code.jquery.com/jquery-3.7.1.js"
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script type="text/javascript" src="scripts.js"></script>
+    <title>Document</title>
+</head>
+
+<body class="px-5 bg-light" style="min-width: 500px">
+    <header>
+        <h2 id="title" class="text-center p-4"><strong>SIMPLE FORUM APP</strong><hr><small>Shoutout to Sir Eugene</small></h2>
+        <nav class="navbar navbar-light bg-white border border-2 rounded">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">HYEUMINE API</a>
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#auth-form"
+                            data-bs-whatever="Sign In">Sign In</button>
+
+                        <button type="button" class="btn btn-sm btn-outline-success" data-bs-toggle="modal"
+                            data-bs-target="#auth-form" data-bs-whatever="Sign Up">Sign Up</button>
+                    </li>
+                </ul>
+                <div class="modal fade" id="auth-form" data-bs-backdrop="false" tabindex="-1" aria-labelledby="auth-title" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="auth-title">Window Title</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="form-floating py-2">
+                                        <input class="form-control" id="first-name" placeholder="First Name">
+                                        <label for="first-name">First Name</label>
+                                    </div>
+                                    <div class="form-floating py-2">
+                                        <input class="form-control" id="last-name" placeholder="Last Name">
+                                        <label for="last-name">Last Name</label>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer justify-content-center">
+                                <button id="auth-btn" type="button" class="btn btn-primary w-100">Login</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="d-flex justify-content-between align-items-center py-2">
+            <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#post-form">New Topic</button>
+
+            <div class="modal fade" id="post-form" tabindex="-1" data-bs-backdrop="false" aria-labelledby="post-title" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="post-title">New Topic</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-floating">
+                                    <textarea class="form-control" placeholder="Leave a comment here" id="post-content" style="height: 100px"></textarea>
+                                    <label for="post-content">Post Content</label>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer justify-content-center">
+                            <button id="post-btn" type="button" class="btn btn-primary w-100">Create New Topic</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <nav>
+                <ul class="pagination pagination-sm m-0 p-0">
+                    <li class="page-item"><a class="page-link text-dark" href="#">Previous</a></li>
+                    <li class="page-item"><a class="page-link text-dark" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link text-dark" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link text-dark" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link text-dark" href="#">4</a></li>
+                    <li class="page-item"><a class="page-link text-dark" href="#">5</a></li>
+                    <li class="page-item"><a class="page-link text-dark" href="#">Next</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="container-fluid border rounded text-white bg-secondary">Threads</div>
+        <div id="threads" class="list-group">
+            <button class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                    <p class="mb-1"><span class="badge bg-primary">0</span> Some placeholder content in a paragraph.</p>
+                    <small class="text-muted">09/11/2023 11:52PM</small>
+                </div>
+                <small class="text-muted">Post by Eren Jeager</small>
+            </button>
+            <button href="#" class="list-group-item list-group-item-action border border-2 rounded">
+                <div class="d-flex w-100 justify-content-between">
+                    <p class="mb-1"><span id="post-replies" class="badge bg-primary">0</span> <span id="post-content">Some placeholder content in a paragraph.</span></p>
+                    <small id="post-date" class="text-muted">09/11/2023 11:52PM</small>
+                </div>
+                <small class="text-muted">Post by <span id="post-author">Eren Jeager</span></small>
+            </button>
+        </div>
+
+    </main>
+    <footer class="p-5"></footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <!-- <script type="text/javascript" src="scripts.js"></script> -->
-    <!-- <link rel="stylesheet" type="text/css" href="styles.css"> -->
-    <title>Home - Forum App</title>
-</head>
-
-<body style="background-color: #e0e0e0; padding: 0 15px;">
-    <header>
-        <h2 id="title" class="text-center p-5">FORUM APP - Shoutout to Sir Eugene</h2>
-        <!-- <nav class="navbar navbar-expand-sm navbar-light bg-light">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="index.html">FORUM APP</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                    <ul class="navbar-nav ml-auto mb-2">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Sign In</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Sign Up</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav> -->
-          
-          <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="#">Brand Name</a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav">
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Home</a>
-                </li>
-              </ul>
-              <ul class="navbar-nav ms-auto">
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="signInDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Sign In
-                  </a>
-                  <ul class="dropdown-menu" aria-labelledby="signInDropdown">
-                    <li>
-                      <form class="px-4 py-3">
-                        <div class="mb-3">
-                          <label for="firstName" class="form-label">First Name</label>
-                          <input type="text" class="form-control" id="firstName" placeholder="First Name">
-                        </div>
-                        <div class="mb-3">
-                          <label for="lastName" class="form-label">Last Name</label>
-                          <input type="text" class="form-control" id="lastName" placeholder="Last Name">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Sign In</button>
-                      </form>
-                    </li>
-                  </ul>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="signUpDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Sign Up
-                  </a>
-                  <ul class="dropdown-menu" aria-labelledby="signUpDropdown">
-                    <li>
-                      <form class="px-4 py-3">
-                        <div class="mb-3">
-                          <label for="firstName" class="form-label">First Name</label>
-                          <input type="text" class="form-control" id="firstName" placeholder="First Name">
-                        </div>
-                        <div class="mb-3">
-                          <label for="lastName" class="form-label">Last Name</label>
-                          <input type="text" class="form-control" id="lastName" placeholder="Last Name">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Sign Up</button>
-                      </form>
-                    </li>
-                  </ul>
-                </li>
-              </div>
-            </div>
-          </nav>
-          
-
-    </header>
-    <main>
-        <div>
-            <dl id="thread-header" class="mt-2 mb-2" style="background-color: #3F627F; color: white; border-radius: 3px;">
-                <dt style="padding-left: 10px;">Topics</dt>
-            </dl>
-            <form class="d-flex mt-2 mb-2">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-            <div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1"><span class="badge bg-primary rounded-pill">14</span> List group item heading
-                        </h5>
-                        <small class="text-muted">3 days ago</small>
-                    </div>
-                    <p class="mb-1">Some placeholder content in a paragraph.</p>
-                    <small class="text-muted">And some muted small print.</small>
-                </a>
-            </div>
-        </div>
-    </main>
-    <footer>
-
-    </footer>
 </body>
 
 </html>
