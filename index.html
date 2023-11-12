@@ -1,129 +1,247 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<script
+			src="https://code.jquery.com/jquery-3.7.1.js"
+			integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+			crossorigin="anonymous"></script>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+			crossorigin="anonymous" />
+		<script type="text/javascript" src="scripts.js"></script>
+		<link type="text/css" rel="stylesheet" href="styles.css" />
+		<title>Document</title>
+	</head>
 
+	<body
+		class="px-2 px-sm-5 px-custom-1 px-custom-2 bg-light"
+		style="min-width: 500px">
+		<header>
+			<h2 id="title" class="text-center p-4">
+				<strong>SIMPLE FORUM APP</strong>
+				<hr />
+				<small>Shoutout to Sir Eugene</small>
+			</h2>
+			<nav class="navbar navbar-light bg-white border border-2 rounded">
+				<div class="container-fluid">
+					<a class="navbar-brand" href="#">HYEUMINE API</a>
+					<ul class="navbar-nav me-auto">
+						<li class="nav-item">
+							<a class="nav-link" href="index.html">Home</a>
+						</li>
+					</ul>
+					<ul class="navbar-nav ms-auto">
+						<li class="nav-item">
+							<button
+								id="show-login-btn"
+								type="button"
+								class="btn btn-sm btn-success"
+								data-bs-toggle="modal"
+								data-bs-target="#modal-form"
+								data-bs-whatever="Sign In">
+								Sign In
+							</button>
 
-    <script src="https://code.jquery.com/jquery-3.7.1.js"
-        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script type="text/javascript" src="scripts.js"></script>
-    <title>Document</title>
-</head>
+							<button
+								id="show-register-btn"
+								type="button"
+								class="btn btn-sm btn-outline-success"
+								data-bs-toggle="modal"
+								data-bs-target="#modal-form"
+								data-bs-whatever="Sign Up">
+								Sign Up
+							</button>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</header>
+		<main style="min-height: 1000px">
+			<section>
+				<div id="modal-form" class="modal fade" tabindex="-1">
+					<div
+						class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+						<div class="modal-content">
+							<div class="modal-header"></div>
+							<div class="modal-body"></div>
+							<div class="modal-footer"></div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section>
+				<div
+					class="d-flex justify-content-between align-items-center py-2">
+					<button
+						id="new-topic-btn"
+						type="button"
+						class="btn btn-sm btn-secondary"
+						data-bs-toggle="modal"
+						data-bs-target="#modal-form">
+						New <b>Topic</b>
+					</button>
+					<nav>
+						<div id="pagination" class="pagination pagination-sm">
+							<div class="page-item">
+								<button
+									id="pagination-previous"
+									class="page-link">
+									Previous
+								</button>
+							</div>
+							<ul class="pagination m-0">
+								<li class="page-item">
+									<button class="page-link">6</button>
+								</li>
+								<li class="page-item">
+									<button class="page-link">7</button>
+								</li>
+								<li class="page-item">
+									<button class="page-link">8</button>
+								</li>
+								<li class="page-item">
+									<button class="page-link">9</button>
+								</li>
+								<li class="page-item">
+									<button class="page-link">10</button>
+								</li>
+							</ul>
+							<div class="page-item">
+								<button id="pagination-next" class="page-link">
+									Next
+								</button>
+							</div>
+						</div>
+					</nav>
+				</div>
+				<div
+					class="container-fluid border rounded text-white bg-secondary">
+					Threads
+				</div>
+				<div id="threads" class="list-group">
+					<button class="list-group-item list-group-item-action">
+						<div class="container-fluid d-flex gap-2">
+							<div
+								class="d-flex justify-content-center align-items-center me-2">
+								<img
+									src="topic_read_hot.png"
+									style="width: 36px; height: 36px" />
+							</div>
+							<div
+								class="container-fluid d-inline-block m-0 p-0 text-truncate"
+								style="max-width: 50%">
+								<h6 class="m-0 p-0">
+									<span class="post-author">Eren Jeager</span>
+								</h6>
+								<small class="post-content text-muted"
+									>Lorem ipsum dolor sit amet, consectetur
+									adipiscing elit, sed do eiusmod tempor
+									incididunt ut labore et dolore magna aliqua.
+									Ut enim ad minim veniam, quis nostrud
+									exercitation ullamco laboris nisi ut aliquip
+									ex ea commodo consequat. Duis aute irure
+									dolor in reprehenderit in voluptate velit
+									esse cillum dolore eu fugiat nulla
+									pariatur.</small
+								>
+							</div>
+							<div
+								class="container-fluid d-flex align-items-start justify-content-end">
+								<div class="d-flex flex-column">
+									<small
+										class="post-date text-nowrap text-muted"
+										>12/11/2023 5:01PM</small
+									>
+									<small class="text-nowrap text-muted"
+										>Replies:
+										<span
+											class="post-replies badge bg-secondary"
+											>0</span
+										></small
+									>
+								</div>
+							</div>
+							<input
+								onclick="alert(1)"
+								type="button"
+								class="btn-close"
+								style="font-size: small"
+								aria-label="Close" />
+						</div>
+					</button>
 
-<body class="px-5 bg-light" style="min-width: 500px">
-    <header>
-        <h2 id="title" class="text-center p-4"><strong>SIMPLE FORUM APP</strong><hr><small>Shoutout to Sir Eugene</small></h2>
-        <nav class="navbar navbar-light bg-white border border-2 rounded">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">HYEUMINE API</a>
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#auth-form"
-                            data-bs-whatever="Sign In">Sign In</button>
+					<button class="list-group-item list-group-item-action">
+						<div class="container-fluid d-flex gap-2">
+							<div
+								class="d-flex justify-content-center align-items-center me-2">
+								<img
+									src="topic_read_hot.png"
+									style="width: 36px; height: 36px" />
+							</div>
+							<div
+								class="container-fluid d-inline-block m-0 p-0 text-truncate"
+								style="max-width: 50%">
+								<h6 class="m-0 p-0">
+									<span class="post-author"
+										>Mikasa Ackerman</span
+									>
+								</h6>
+								<small class="post-content text-muted"
+									>Lorem ipsum dolor sit amet, consectetur
+									adipiscing elit, sed do eiusmod tempor
+									incididunt ut labore et dolore magna aliqua.
+									Ut enim ad minim veniam, quis nostrud
+									exercitation ullamco laboris nisi ut aliquip
+									ex ea commodo consequat. Duis aute irure
+									dolor in reprehenderit in voluptate velit
+									esse cillum dolore eu fugiat nulla
+									pariatur.</small
+								>
+							</div>
+							<div
+								class="container-fluid d-flex align-items-start justify-content-end">
+								<div class="d-flex flex-column">
+									<small
+										class="post-date text-nowrap text-muted"
+										>12/11/2023 5:01PM</small
+									>
+									<small class="text-nowrap text-muted"
+										>Replies:
+										<span
+											class="post-replies badge bg-secondary"
+											>0</span
+										></small
+									>
+								</div>
+							</div>
+							<input
+								onclick="alert(1)"
+								type="button"
+								class="btn-close"
+								style="font-size: small; visibility: hidden"
+								aria-label="Close" />
+						</div>
+					</button>
+				</div>
+			</section>
+		</main>
+		<footer>
+			<div
+				class="container-fluid border rounded text-center text-white bg-secondary">
+				Credits @Hunyo
+			</div>
+		</footer>
 
-                        <button type="button" class="btn btn-sm btn-outline-success" data-bs-toggle="modal"
-                            data-bs-target="#auth-form" data-bs-whatever="Sign Up">Sign Up</button>
-                    </li>
-                </ul>
-                <div class="modal fade" id="auth-form" data-bs-backdrop="false" tabindex="-1" aria-labelledby="auth-title" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="auth-title">Window Title</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form>
-                                    <div class="form-floating py-2">
-                                        <input class="form-control" id="first-name" placeholder="First Name">
-                                        <label for="first-name">First Name</label>
-                                    </div>
-                                    <div class="form-floating py-2">
-                                        <input class="form-control" id="last-name" placeholder="Last Name">
-                                        <label for="last-name">Last Name</label>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer justify-content-center">
-                                <button id="auth-btn" type="button" class="btn btn-primary w-100">Login</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <main>
-        <div class="d-flex justify-content-between align-items-center py-2">
-            <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#post-form">New Topic</button>
-
-            <div class="modal fade" id="post-form" tabindex="-1" data-bs-backdrop="false" aria-labelledby="post-title" aria-hidden="true">
-                <div class="modal-dialog modal-lg modal-dialog-scrollable">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="post-title">New Topic</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Leave a comment here" id="post-content" style="height: 100px"></textarea>
-                                    <label for="post-content">Post Content</label>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer justify-content-center">
-                            <button id="post-btn" type="button" class="btn btn-primary w-100">Create New Topic</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <nav>
-                <ul class="pagination pagination-sm m-0 p-0">
-                    <li class="page-item"><a class="page-link text-dark" href="#">Previous</a></li>
-                    <li class="page-item"><a class="page-link text-dark" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link text-dark" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link text-dark" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link text-dark" href="#">4</a></li>
-                    <li class="page-item"><a class="page-link text-dark" href="#">5</a></li>
-                    <li class="page-item"><a class="page-link text-dark" href="#">Next</a></li>
-                </ul>
-            </nav>
-        </div>
-        <div class="container-fluid border rounded text-white bg-secondary">Threads</div>
-        <div id="threads" class="list-group">
-            <button class="list-group-item list-group-item-action">
-                <div class="d-flex w-100 justify-content-between">
-                    <p class="mb-1"><span class="badge bg-primary">0</span> Some placeholder content in a paragraph.</p>
-                    <small class="text-muted">09/11/2023 11:52PM</small>
-                </div>
-                <small class="text-muted">Post by Eren Jeager</small>
-            </button>
-            <button href="#" class="list-group-item list-group-item-action border border-2 rounded">
-                <div class="d-flex w-100 justify-content-between">
-                    <p class="mb-1"><span id="post-replies" class="badge bg-primary">0</span> <span id="post-content">Some placeholder content in a paragraph.</span></p>
-                    <small id="post-date" class="text-muted">09/11/2023 11:52PM</small>
-                </div>
-                <small class="text-muted">Post by <span id="post-author">Eren Jeager</span></small>
-            </button>
-        </div>
-
-    </main>
-    <footer class="p-5"></footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
-</body>
-
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+			crossorigin="anonymous"></script>
+	</body>
 </html>
