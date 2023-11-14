@@ -15,8 +15,13 @@
 			rel="stylesheet"
 			integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 			crossorigin="anonymous" />
-		<script type="text/javascript" src="scripts.js"></script>
-		<link type="text/css" rel="stylesheet" href="styles.css" />
+		<script
+			type="module"
+			src="scripts.js"></script>
+		<link
+			type="text/css"
+			rel="stylesheet"
+			href="styles.css" />
 		<title>Document</title>
 	</head>
 
@@ -24,17 +29,28 @@
 		class="px-2 px-sm-5 px-custom-1 px-custom-2 bg-light"
 		style="min-width: 500px">
 		<header>
-			<h2 id="title" class="text-center p-4">
+			<h2
+				id="title"
+				class="text-center p-4">
 				<strong>SIMPLE FORUM APP</strong>
 				<hr />
 				<small>Shoutout to Sir Eugene</small>
 			</h2>
 			<nav class="navbar navbar-light bg-white border border-2 rounded">
 				<div class="container-fluid">
-					<a class="navbar-brand" href="#">HYEUMINE API</a>
+					<a
+						class="navbar-brand"
+						href="#">
+						HYEUMINE API
+					</a>
+
 					<ul class="navbar-nav me-auto">
 						<li class="nav-item">
-							<a class="nav-link" href="index.html">Home</a>
+							<a
+								class="nav-link"
+								href="index.html">
+								Home
+							</a>
 						</li>
 					</ul>
 					<ul class="navbar-nav ms-auto">
@@ -44,8 +60,7 @@
 								type="button"
 								class="btn btn-sm btn-success"
 								data-bs-toggle="modal"
-								data-bs-target="#modal-form"
-								data-bs-whatever="Sign In">
+								data-bs-target="#modal-form">
 								Sign In
 							</button>
 
@@ -54,8 +69,7 @@
 								type="button"
 								class="btn btn-sm btn-outline-success"
 								data-bs-toggle="modal"
-								data-bs-target="#modal-form"
-								data-bs-whatever="Sign Up">
+								data-bs-target="#modal-form">
 								Sign Up
 							</button>
 						</li>
@@ -65,68 +79,87 @@
 		</header>
 		<main style="min-height: 1000px">
 			<section>
-				<div id="modal-form" class="modal fade" tabindex="-1">
+				<div
+					id="modal-form"
+					class="modal fade"
+					tabindex="-1">
 					<div
 						class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
 						style="min-width: 500px">
 						<div class="modal-content">
-							<div class="modal-header"></div>
+							<div class="modal-header">
+								<h5 class="modal-title">MODAL HEADER</h5>
+								<button
+									type="button"
+									class="btn-close"
+									data-bs-dismiss="modal"
+									aria-label="Close"></button>
+							</div>
 							<div class="modal-body"></div>
-							<div class="modal-footer"></div>
+							<div class="modal-footer">
+								<button
+									type="button"
+									class="btn btn-primary w-100"></button>
+							</div>
 						</div>
 					</div>
 				</div>
 			</section>
 			<section>
-				<div
-					class="d-flex justify-content-between align-items-center py-2">
+				<div class="d-flex justify-content-between align-items-center py-2">
 					<button
 						id="new-topic-btn"
 						type="button"
 						class="btn btn-sm btn-secondary"
 						data-bs-toggle="modal"
 						data-bs-target="#modal-form">
-						New <b>Topic</b>
+						New
+						<b>Topic</b>
 					</button>
 					<nav>
-						<div id="pagination" class="pagination pagination-sm">
+						<div
+							id="pagination"
+							class="pagination pagination-sm">
 							<div class="page-item">
 								<button
 									id="pagination-previous"
 									class="page-link">
-									Previous
+									<span aria-hidden="true">&laquo;</span>
 								</button>
 							</div>
 							<ul class="pagination m-0">
-								<li class="page-item">
-									<button class="page-link">6</button>
+								<li class="page-item active">
+									<button class="page-link">1</button>
 								</li>
 								<li class="page-item">
-									<button class="page-link">7</button>
+									<button class="page-link">2</button>
 								</li>
 								<li class="page-item">
-									<button class="page-link">8</button>
+									<button class="page-link">3</button>
 								</li>
 								<li class="page-item">
-									<button class="page-link">9</button>
+									<button class="page-link">4</button>
 								</li>
 								<li class="page-item">
-									<button class="page-link">10</button>
+									<button class="page-link">5</button>
 								</li>
 							</ul>
 							<div class="page-item">
-								<button id="pagination-next" class="page-link">
-									Next
+								<button
+									id="pagination-next"
+									class="page-link">
+									<span aria-hidden="true">&raquo;</span>
 								</button>
 							</div>
 						</div>
 					</nav>
 				</div>
-				<div
-					class="container-fluid border rounded text-white bg-secondary">
+				<div class="container-fluid border rounded text-white bg-secondary">
 					Threads
 				</div>
-				<div id="threads" class="list-group">
+				<div
+					id="threads"
+					class="list-group">
 					<button
 						type="button"
 						class="list-group-item list-group-item-action"
@@ -137,52 +170,41 @@
 							<div
 								class="d-flex justify-content-center align-items-center me-2">
 								<img
-									src="topic_read_hot.png"
+									src="./src/imgs/topic_read_hot.png"
 									style="width: 36px; height: 36px" />
 							</div>
 							<div
 								class="container-fluid d-inline-block m-0 p-0 text-truncate"
 								style="max-width: 50%">
 								<h6 class="m-0 p-0 text-truncate">
-									<span class="post-author"
-										>Eren Jeager - Lorem ipsum dolor sit
-										amet, consectetur adipiscing elit, sed
-										do eiusmod tempor incididunt ut labore
-										et dolore magna aliqua. Ut enim ad minim
-										veniam, quis nostrud exercitation
-										ullamco laboris nisi ut aliquip ex ea
-										commodo consequat. Duis aute irure dolor
-										in reprehenderit in voluptate velit esse
-										cillum dolore eu fugiat nulla
-										pariatur.</span
-									>
+									<span class="post-author">
+										Eren Jeager - Lorem ipsum dolor sit amet, consectetur
+										adipiscing elit, sed do eiusmod tempor incididunt ut labore
+										et dolore magna aliqua. Ut enim ad minim veniam, quis
+										nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+										commodo consequat. Duis aute irure dolor in reprehenderit in
+										voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+									</span>
 								</h6>
-								<small class="post-content text-muted"
-									>Lorem ipsum dolor sit amet, consectetur
-									adipiscing elit, sed do eiusmod tempor
-									incididunt ut labore et dolore magna aliqua.
-									Ut enim ad minim veniam, quis nostrud
-									exercitation ullamco laboris nisi ut aliquip
-									ex ea commodo consequat. Duis aute irure
-									dolor in reprehenderit in voluptate velit
-									esse cillum dolore eu fugiat nulla
-									pariatur.</small
-								>
+								<small class="post-content text-muted">
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+									do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+									Ut enim ad minim veniam, quis nostrud exercitation ullamco
+									laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+									irure dolor in reprehenderit in voluptate velit esse cillum
+									dolore eu fugiat nulla pariatur.
+								</small>
 							</div>
 							<div
 								class="container-fluid d-flex align-items-start justify-content-end">
 								<div class="d-flex flex-column">
-									<small
-										class="post-date text-nowrap text-muted"
-										>12/11/2023 5:01PM</small
-									>
-									<small class="text-nowrap text-muted"
-										>Replies:
-										<span
-											class="post-replies badge bg-danger rounded"
-											>0</span
-										></small
-									>
+									<small class="post-date text-nowrap text-muted">
+										12/11/2023 5:01PM
+									</small>
+									<small class="text-nowrap text-muted">
+										Replies:
+										<span class="post-replies badge bg-danger rounded">0</span>
+									</small>
 								</div>
 							</div>
 							<input
