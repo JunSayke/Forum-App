@@ -67,7 +67,8 @@
 			<section>
 				<div id="modal-form" class="modal fade" tabindex="-1">
 					<div
-						class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+						class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+						style="min-width: 500px">
 						<div class="modal-content">
 							<div class="modal-header"></div>
 							<div class="modal-body"></div>
@@ -126,7 +127,12 @@
 					Threads
 				</div>
 				<div id="threads" class="list-group">
-					<button class="list-group-item list-group-item-action">
+					<button
+						type="button"
+						class="list-group-item list-group-item-action"
+						data-bs-toggle="modal"
+						data-bs-target="#modal-form"
+						data-bs-whatever="Forum Thread">
 						<div class="container-fluid d-flex gap-2">
 							<div
 								class="d-flex justify-content-center align-items-center me-2">
@@ -137,60 +143,18 @@
 							<div
 								class="container-fluid d-inline-block m-0 p-0 text-truncate"
 								style="max-width: 50%">
-								<h6 class="m-0 p-0">
-									<span class="post-author">Eren Jeager</span>
-								</h6>
-								<small class="post-content text-muted"
-									>Lorem ipsum dolor sit amet, consectetur
-									adipiscing elit, sed do eiusmod tempor
-									incididunt ut labore et dolore magna aliqua.
-									Ut enim ad minim veniam, quis nostrud
-									exercitation ullamco laboris nisi ut aliquip
-									ex ea commodo consequat. Duis aute irure
-									dolor in reprehenderit in voluptate velit
-									esse cillum dolore eu fugiat nulla
-									pariatur.</small
-								>
-							</div>
-							<div
-								class="container-fluid d-flex align-items-start justify-content-end">
-								<div class="d-flex flex-column">
-									<small
-										class="post-date text-nowrap text-muted"
-										>12/11/2023 5:01PM</small
-									>
-									<small class="text-nowrap text-muted"
-										>Replies:
-										<span
-											class="post-replies badge bg-secondary"
-											>0</span
-										></small
-									>
-								</div>
-							</div>
-							<input
-								onclick="alert(1)"
-								type="button"
-								class="btn-close"
-								style="font-size: small"
-								aria-label="Close" />
-						</div>
-					</button>
-
-					<button class="list-group-item list-group-item-action">
-						<div class="container-fluid d-flex gap-2">
-							<div
-								class="d-flex justify-content-center align-items-center me-2">
-								<img
-									src="topic_read_hot.png"
-									style="width: 36px; height: 36px" />
-							</div>
-							<div
-								class="container-fluid d-inline-block m-0 p-0 text-truncate"
-								style="max-width: 50%">
-								<h6 class="m-0 p-0">
+								<h6 class="m-0 p-0 text-truncate">
 									<span class="post-author"
-										>Mikasa Ackerman</span
+										>Eren Jeager - Lorem ipsum dolor sit
+										amet, consectetur adipiscing elit, sed
+										do eiusmod tempor incididunt ut labore
+										et dolore magna aliqua. Ut enim ad minim
+										veniam, quis nostrud exercitation
+										ullamco laboris nisi ut aliquip ex ea
+										commodo consequat. Duis aute irure dolor
+										in reprehenderit in voluptate velit esse
+										cillum dolore eu fugiat nulla
+										pariatur.</span
 									>
 								</h6>
 								<small class="post-content text-muted"
@@ -215,7 +179,7 @@
 									<small class="text-nowrap text-muted"
 										>Replies:
 										<span
-											class="post-replies badge bg-secondary"
+											class="post-replies badge bg-danger rounded"
 											>0</span
 										></small
 									>

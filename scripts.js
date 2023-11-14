@@ -13,24 +13,13 @@ const POST_HTML = `<button
             src="topic_read_hot.png"
             style="width: 36px; height: 36px" />
     </div>
-    <div
-        class="container-fluid d-inline-block m-0 p-0 text-truncate"
-        style="max-width: 50%">
-        <h6 class="m-0 p-0">
-            <span class="post-author">Eren Jeager</span>
-        </h6>
-        <small class="post-content text-muted"
-            >Lorem ipsum dolor sit amet, consectetur
-            adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua.
-            Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip
-            ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit
-            esse cillum dolore eu fugiat nulla
-            pariatur.</small
-        >
-    </div>
+	<div
+		class="container-fluid d-inline-block m-0 p-0 text-truncate"
+		style="max-width: 50%">
+		<h6 class="post-author m-0 p-0 text-truncate">
+		</h6>
+		<small class="post-content text-muted"></small>
+	</div>
     <div
         class="container-fluid d-flex align-items-start justify-content-end">
         <div class="d-flex flex-column">
@@ -50,37 +39,31 @@ const POST_HTML = `<button
     <input
         onclick="alert(1)"
         type="button"
-        class="btn-close"
+        class="btn-close ms-auto"
         style="font-size: small; visibility: hidden"
         aria-label="Close" />
 </div>
 </button>`;
-const REPLY_HTML = `<hr><div
-    class="container-fluid rounded d-flex gap-4 p-2 my-2">
-    <div
-        class="p-2 text-nowrap d-flex flex-column">
-        <span>EREN JEAGER</span>
-        <small class="text-muted"
-            >12/11/2023 11:49PM</small
-        >
-    </div>
-    <div
-        class="p-4 border-start border-secondary">
-        <div>
-            Lorem ipsum dolor sit amet,
-            consectetur adipiscing elit, sed
-            do eiusmod tempor incididunt ut
-            labore et dolore magna aliqua.
-            Ut enim ad minim veniam, quis
-            nostrud exercitation ullamco
-            laboris nisi ut aliquip ex ea
-            commodo consequat. Duis aute
-            irure dolor in reprehenderit in
-            voluptate velit esse cillum
-            dolore eu fugiat nulla pariatur.
-        </div>
-    </div>
-</div><hr>`;
+const REPLY_HTML = `<hr />
+	<div class="container-fluid d-flex flex-column ">
+		<div class="container-fluid d-flex p-2">
+			<div class="d-flex justify-content-center align-items-center me-4">
+				<img src="user_profile_icon.png" style="
+						width: 36px;
+						height: 36px;
+					">
+			</div>
+			<div class="container-fluid d-inline-block m-0 p-0 text-truncate" style="max-width: 50%">
+				<h6 class="post-author m-0 p-0 text-truncate"></h6>
+				<small class="post-date text-muted"></small>
+			</div>
+		</div>
+		<div class="container-fluid">
+			<p class="post-content"></p>
+		</div>
+		<button class="btn btn-sm btn-outline-danger ms-auto">Delete</button>
+	</div>
+<hr />`;
 const MODAL_FORM = "#modal-form";
 const THREADS = {};
 const USER_ID = localStorage.getItem("uid");
@@ -130,7 +113,7 @@ $("document").ready(() => {
 	});
 });
 
-function setThreadModal() {
+function setThreadModal(thread) {
 	const modalHeader = $(`<h5 class="modal-title">
     <b>FORUM THREAD</b>
     </h5>
@@ -140,36 +123,58 @@ function setThreadModal() {
         data-bs-dismiss="modal"
         aria-label="Close">
     </button>`);
+	const modalBody = $(`<div class="container-fluid px-5"></div>`);
 
-	const modalBody = $(`<div class="container-fluid"></div>`);
+	const post = $(REPLY_HTML);
+	const postAuthor = post.find(".post-author");
+	const postDate = post.find(".post-date");
+	const postContent = post.find(".post-content");
+	postAuthor.text(thread.user);
+	postDate.text(thread.date);
+	postContent.text(thread.post);
+	modalBody.append(post);
 
-	for (let i = 0; i < 5; i++) {
-		modalBody.append(REPLY_HTML);
-		console.log(i);
+	if ("reply" in thread) {
+		thread.reply.forEach((r) => {
+			const reply = $(REPLY_HTML);
+			const replyAuthor = reply.find(".post-author");
+			const replyDate = reply.find(".post-date");
+			const replyContent = reply.find(".post-content");
+			replyAuthor.text(r.user);
+			replyDate.text(r.date);
+			replyContent.text(r.reply);
+
+			reply.appendTo(modalBody);
+		});
 	}
 
-	const modalFooter = $(`<form class="w-100">
-        <div class="form-floating">
-            <textarea
-                id="reply-textarea"
-                class="form-control"
-                placeholder="Leave a comment here"
-                style="height: 100px; resize: none"></textarea>
-            <label for="post-content"
-                >Post Content</label
-            >
-            <div
-                class="container-fluid d-flex align-items-center justify-content-end py-2 px-0">
-                <button
-                    id="post-reply-btn"
-                    type="button"
-                    class="btn btn-secondary"
-                    data-bs-dismiss="modal">
-                    Reply
-                </button>
-            </div>
-        </div>
-    </form>`);
+	const modalFooter = $(`<form class="w-100 mx-5">
+		<div class="mb-3">
+			<label
+				for="reply-textarea"
+				class="form-label"
+				>Type your reply here:
+			</label>
+			<textarea
+				class="form-control"
+				id="reply-textarea"
+				rows="3"
+				style="
+					height: 100px;
+					resize: none;
+				"></textarea>
+		</div>
+		<div
+			class="container-fluid d-flex align-items-center justify-content-end py-2 px-0">
+			<button
+				id="post-reply-btn"
+				type="button"
+				class="btn btn-secondary"
+				data-bs-dismiss="modal">
+				Reply
+			</button>
+		</div>
+	</form>`);
 	setModal(modalHeader, modalBody, modalFooter, "modal-xl");
 }
 
@@ -242,18 +247,20 @@ function setTopicModal() {
             aria-label="Close">
         </button>`);
 	const modalBody = $(`<form>
-        <div class="form-floating">
-            <textarea
-                class="form-control"
-                placeholder="Leave a comment here"
-                id="post-content"
-                style="
-                    height: 100px;
-                "></textarea>
-            <label for="post-content"
-                >Post Content</label
-            >
-        </div>
+			<label
+				for="post-textarea"
+				class="form-label"
+				>Type your topic content here:
+			</label>
+			<textarea
+				class="form-control"
+				id="post-textarea"
+				rows="3"
+				style="
+					height: 100px;
+					resize: none;
+			"></textarea>
+		</div>
     </form>`);
 	const modalFooter = $(`<button
         id="post-btn"
@@ -338,27 +345,17 @@ function displayPosts(page) {
 	const posts = getPosts(page);
 	posts.forEach((p) => {
 		const html = $(POST_HTML);
-		let blankAuthor = false;
-		let blankContent = false;
-		let postContent = html.find(".post-content");
-		let postAuthor = html.find(".post-author");
-		let postDate = html.find(".post-date");
-		let postReplies = html.find(".post-replies");
-		let replies = "reply" in p ? p.reply.length : 0;
+		const postAuthor = html.find(".post-author");
+		const postDate = html.find(".post-date");
+		const postContent = html.find(".post-content");
+		const postReplies = html.find(".post-replies");
+		const replies = "reply" in p ? p.reply.length : 0;
 
 		if (p.user.trim().length === 0) {
-			blankAuthor = true;
-		}
-		if (p.post.trim().length === 0) {
-			blankContent = true;
-		}
-
-		if (blankAuthor === true) {
 			postAuthor.addClass("text-danger");
 			p.user = "Unknown User";
 		}
-
-		if (blankContent === true) {
+		if (p.post.trim().length === 0) {
 			postContent.removeClass("text-muted");
 			postContent.addClass("text-danger");
 			p.post = "unknown topic";
@@ -380,7 +377,7 @@ function displayPosts(page) {
 		}
 
 		html.on("click", () => {
-			setThreadModal();
+			setThreadModal(p);
 		});
 
 		$("#threads").append(html);
