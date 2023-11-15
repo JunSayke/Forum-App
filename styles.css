@@ -57,3 +57,13 @@ hr {
 	padding: 0 !important;
 	margin: 0 !important;
 }
+
+#profile-name:focus,
+#profile-name:active {
+	outline: none !important;
+	box-shadow: none !important;
+}
+
+#profile-name:hover {
+	color: darkslategray !important;
+}

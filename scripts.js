@@ -2,7 +2,7 @@ import * as HTML from "./src/scripts/html_bodies.js"
 import * as HYEUMINE from "./src/scripts/api_requests.js"
 
 const USER = {
-	ID: Number.isInteger(parseInt(localStorage.getItem("user_id"))),
+	ID: localStorage.getItem("user_id"),
 	NAME: localStorage.getItem("user_name"),
 }
 const CURRENT_PAGE = Number.isInteger(parseInt(localStorage.getItem("page")))

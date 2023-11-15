@@ -171,6 +171,11 @@ export const LOGIN_REGISTER_BUTTON = `<ul class="navbar-nav ms-auto">
                                     </ul>`
 
 export const PROFILE_DROPDOWN = `<div class="btn-group btn-sm">
+                                    <div class="d-flex justify-content-center align-items-center">
+                                        <img src="./src/imgs/user_profile_icon.png" style="
+                                                width: 24px;
+                                                height: 24px;" />
+                                    </div>
                                     <button
                                         id="profile-name"
                                         type="button"
