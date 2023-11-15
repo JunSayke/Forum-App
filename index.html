@@ -37,7 +37,9 @@
 				<small>Shoutout to Sir Eugene</small>
 			</h2>
 			<nav class="navbar navbar-light bg-white border border-2 rounded">
-				<div class="container-fluid">
+				<div
+					id="nav-header"
+					class="container-fluid">
 					<a
 						class="navbar-brand"
 						href="#">
@@ -53,27 +55,6 @@
 							</a>
 						</li>
 					</ul>
-					<ul class="navbar-nav ms-auto">
-						<li class="nav-item">
-							<button
-								id="show-login-btn"
-								type="button"
-								class="btn btn-sm btn-success"
-								data-bs-toggle="modal"
-								data-bs-target="#modal-form">
-								Sign In
-							</button>
-
-							<button
-								id="show-register-btn"
-								type="button"
-								class="btn btn-sm btn-outline-success"
-								data-bs-toggle="modal"
-								data-bs-target="#modal-form">
-								Sign Up
-							</button>
-						</li>
-					</ul>
 				</div>
 			</nav>
 		</header>
@@ -87,20 +68,9 @@
 						class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
 						style="min-width: 500px">
 						<div class="modal-content">
-							<div class="modal-header">
-								<h5 class="modal-title">MODAL HEADER</h5>
-								<button
-									type="button"
-									class="btn-close"
-									data-bs-dismiss="modal"
-									aria-label="Close"></button>
-							</div>
+							<div class="modal-header"></div>
 							<div class="modal-body"></div>
-							<div class="modal-footer">
-								<button
-									type="button"
-									class="btn btn-primary w-100"></button>
-							</div>
+							<div class="modal-footer"></div>
 						</div>
 					</div>
 				</div>
@@ -127,23 +97,7 @@
 									<span aria-hidden="true">&laquo;</span>
 								</button>
 							</div>
-							<ul class="pagination m-0">
-								<li class="page-item active">
-									<button class="page-link">1</button>
-								</li>
-								<li class="page-item">
-									<button class="page-link">2</button>
-								</li>
-								<li class="page-item">
-									<button class="page-link">3</button>
-								</li>
-								<li class="page-item">
-									<button class="page-link">4</button>
-								</li>
-								<li class="page-item">
-									<button class="page-link">5</button>
-								</li>
-							</ul>
+							<ul class="pagination m-0"></ul>
 							<div class="page-item">
 								<button
 									id="pagination-next"
@@ -159,63 +113,7 @@
 				</div>
 				<div
 					id="threads"
-					class="list-group">
-					<button
-						type="button"
-						class="list-group-item list-group-item-action"
-						data-bs-toggle="modal"
-						data-bs-target="#modal-form"
-						data-bs-whatever="Forum Thread">
-						<div class="container-fluid d-flex gap-2">
-							<div
-								class="d-flex justify-content-center align-items-center me-2">
-								<img
-									src="./src/imgs/topic_read_hot.png"
-									style="width: 36px; height: 36px" />
-							</div>
-							<div
-								class="container-fluid d-inline-block m-0 p-0 text-truncate"
-								style="max-width: 50%">
-								<h6 class="m-0 p-0 text-truncate">
-									<span class="post-author">
-										Eren Jeager - Lorem ipsum dolor sit amet, consectetur
-										adipiscing elit, sed do eiusmod tempor incididunt ut labore
-										et dolore magna aliqua. Ut enim ad minim veniam, quis
-										nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-										commodo consequat. Duis aute irure dolor in reprehenderit in
-										voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-									</span>
-								</h6>
-								<small class="post-content text-muted">
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-									do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-									Ut enim ad minim veniam, quis nostrud exercitation ullamco
-									laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-									irure dolor in reprehenderit in voluptate velit esse cillum
-									dolore eu fugiat nulla pariatur.
-								</small>
-							</div>
-							<div
-								class="container-fluid d-flex align-items-start justify-content-end">
-								<div class="d-flex flex-column">
-									<small class="post-date text-nowrap text-muted">
-										12/11/2023 5:01PM
-									</small>
-									<small class="text-nowrap text-muted">
-										Replies:
-										<span class="post-replies badge bg-danger rounded">0</span>
-									</small>
-								</div>
-							</div>
-							<input
-								onclick="alert(1)"
-								type="button"
-								class="btn-close"
-								style="font-size: small; visibility: hidden"
-								aria-label="Close" />
-						</div>
-					</button>
-				</div>
+					class="list-group"></div>
 			</section>
 		</main>
 		<footer>

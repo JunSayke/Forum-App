@@ -1,8 +1,10 @@
 import * as HTML from "./src/scripts/html_bodies.js"
 import * as HYEUMINE from "./src/scripts/api_requests.js"
 
-const THREADS = {}
-const USER_ID = localStorage.getItem("uid")
+const USER = {
+	ID: Number.isInteger(parseInt(localStorage.getItem("user_id"))),
+	NAME: localStorage.getItem("user_name"),
+}
 const CURRENT_PAGE = Number.isInteger(parseInt(localStorage.getItem("page")))
 	? parseInt(localStorage.getItem("page"))
 	: 1
@@ -10,13 +12,25 @@ const CURRENT_PAGE = Number.isInteger(parseInt(localStorage.getItem("page")))
 $("document").ready(() => {
 	createPagination(Math.floor((CURRENT_PAGE - 1) / 5) * 5 + 1, 5, CURRENT_PAGE)
 
-	$("#show-register-btn").click(() => {
-		setRegisterModal()
-	})
-
-	$("#show-login-btn").click(() => {
-		setLoginModal()
-	})
+	if (USER.ID) {
+		const userProfile = $(HTML.PROFILE_DROPDOWN)
+		userProfile.find("#profile-name").text(USER.NAME)
+		userProfile.find("#logout-btn").on("click", () => {
+			localStorage.removeItem("user_name")
+			localStorage.removeItem("user_id")
+			document.location.reload()
+		})
+		$(HTML.NAV_HEADER).append(userProfile)
+	} else {
+		const loginRegisterBtn = $(HTML.LOGIN_REGISTER_BUTTON)
+		loginRegisterBtn.find("#show-register-btn").on("click", () => {
+			setRegisterModal()
+		})
+		loginRegisterBtn.find("#show-login-btn").on("click", () => {
+			setLoginModal()
+		})
+		$(HTML.NAV_HEADER).append(loginRegisterBtn)
+	}
 
 	$("#new-topic-btn").click(() => {
 		setTopicModal()
@@ -27,15 +41,14 @@ function setRegisterModal() {
 	const modalHeader = $(HTML.MODAL_HEADER)
 	const modalBody = $(HTML.REGISTER_MODAL_BODY)
 	const modalFooter = $(HTML.MODAL_FOOTER_BUTTON)
-
+	modalHeader.find(".modal-title").html("<b>REGISTER FORM</b>")
 	modalFooter.text("Register")
-	modalFooter.on("click", () => {
+	modalFooter.off("click").on("click", () => {
 		HYEUMINE.createUser(
 			modalBody.find("#first-name").val(),
 			modalBody.find("#last-name").val()
 		)
 	})
-
 	setModal(modalHeader, modalBody, modalFooter)
 }
 
@@ -43,15 +56,14 @@ function setLoginModal() {
 	const modalHeader = $(HTML.MODAL_HEADER)
 	const modalBody = $(HTML.LOGIN_MODAL_BODY)
 	const modalFooter = $(HTML.MODAL_FOOTER_BUTTON)
-
+	modalHeader.find(".modal-title").html("<b>LOGIN FORM</b>")
 	modalFooter.text("Login")
-	modalFooter.on("click", () => {
+	modalFooter.off("click").on("click", () => {
 		HYEUMINE.loginUser(
 			modalBody.find("#first-name").val(),
 			modalBody.find("#last-name").val()
 		)
 	})
-
 	setModal(modalHeader, modalBody, modalFooter)
 }
 
@@ -60,56 +72,102 @@ function setTopicModal() {
 	const modalBody = $(HTML.TOPIC_MODAL_BODY)
 	const modalFooter = $(HTML.MODAL_FOOTER_BUTTON)
 
+	modalHeader.find(".modal-title").html("NEW TOPIC")
 	modalFooter.text("Create Topic")
-	setModal(modalHeader, modalBody, modalFooter, "modal-lg")
+
+	modalFooter.off("click").on("click", () => {
+		HYEUMINE.newPost(USER.ID, modalBody.find("#post-textarea").val())
+	})
+	setModal(modalHeader, modalBody, modalFooter)
 }
 
 function setThreadModal(thread) {
 	const modalHeader = $(HTML.MODAL_HEADER)
 	const modalBody = $(HTML.THREAD_MODAL_BODY)
 	const modalFooter = $(HTML.THREAD_MODAL_FOOTER)
-	const post = $(HTML.REPLY_HTML)
-
-	post.find(".post-author").text(thread.user)
-	post.find(".post-date").text(thread.date)
-	post.find(".post-content").text(thread.post)
 
 	modalHeader.find(".modal-title").html("<b>FORUM THREAD</b>")
+
+	const post = $(HTML.REPLY_HTML)
+	const postAuthor = post.find(".post-author")
+	const postContent = post.find(".post-content")
+
+	if (thread.user.trim().length === 0) {
+		postAuthor.addClass("text-danger")
+		postAuthor.text("Unknown User")
+	} else {
+		postAuthor.text(thread.user)
+	}
+	if (thread.post.trim().length === 0) {
+		postContent.removeClass("text-muted")
+		postContent.addClass("text-danger")
+		postContent.text("unknown topic")
+	} else {
+		postContent.text(thread.post)
+	}
+
+	post.find(".post-date").text(thread.date)
+	post.addClass("border border-secondary rounded")
+
 	modalBody.append(post)
+	modalBody.append(`<p class="text-muted text-center my-4">Comments</p>`)
 
 	if (thread.hasOwnProperty("reply")) {
+		thread.reply.reverse()
 		thread.reply.forEach((r) => {
 			const reply = $(HTML.REPLY_HTML)
+			const replyAuthor = reply.find(".post-author")
+			const replyContent = reply.find(".post-content")
+
+			if (r.user.trim().length === 0) {
+				replyAuthor.addClass("text-danger")
+				replyAuthor.text("Unknown User")
+			} else {
+				replyAuthor.text(r.user)
+			}
+			if (r.reply.trim().length === 0) {
+				replyContent.removeClass("text-muted")
+				replyContent.addClass("text-danger")
+				replyContent.text("unknown topic")
+			} else {
+				replyContent.text(r.reply)
+			}
+
+			reply.find(".post-date").text(r.date)
 			const deleteBtn = reply.find("button")
 
-			reply.find(".post-author").text(r.user)
-			reply.find(".post-date").text(r.date)
-			reply.find(".post-content").text(r.reply)
-
-			if (r.uid === USER_ID) {
+			if (r.uid === USER.ID) {
 				deleteBtn.css("visibility", "")
 				deleteBtn.off("click").on("click", () => {
-					HYEUMINE.deleteReply(p.id)
+					HYEUMINE.deleteReply(r.id)
 					document.location.reload()
 				})
 			}
 
+			modalBody.append("<hr />")
 			reply.appendTo(modalBody)
 		})
 	}
 
-	modalFooter.text("Reply")
-	modalFooter.on("click", () => {})
+	modalFooter.find("button").on("click", () => {
+		HYEUMINE.replyPost(
+			USER.ID,
+			thread.id,
+			modalFooter.find("#reply-textarea").val()
+		)
+	})
+
 	setModal(modalHeader, modalBody, modalFooter, "modal-xl")
 }
 
-function setModal(modalHeader, modalBody, modalFooter, modalSize = "modal-sm") {
+function setModal(modalHeader, modalBody, modalFooter, modalSize = "modal-md") {
 	$(HTML.MODAL_FORM).find(".modal-dialog").removeClass("modal-sm")
 	$(HTML.MODAL_FORM).find(".modal-dialog").removeClass("modal-md")
 	$(HTML.MODAL_FORM).find(".modal-dialog").removeClass("modal-lg")
 	$(HTML.MODAL_FORM).find(".modal-dialog").removeClass("modal-xl")
 	$(HTML.MODAL_FORM).find(".modal-dialog").addClass(modalSize)
 
+	$(HTML.MODAL_FORM).find(".modal-header").html(modalHeader)
 	$(HTML.MODAL_FORM).find(".modal-body").html(modalBody)
 	$(HTML.MODAL_FORM).find(".modal-footer").html(modalFooter)
 }
@@ -180,20 +238,22 @@ function displayPosts(page) {
 
 		if (p.user.trim().length === 0) {
 			postAuthor.addClass("text-danger")
-			p.user = "Unknown User"
+			postAuthor.text("Unknown User")
+		} else {
+			postAuthor.text(p.user)
 		}
 		if (p.post.trim().length === 0) {
 			postContent.removeClass("text-muted")
 			postContent.addClass("text-danger")
-			p.post = "unknown topic"
+			postContent.text("unknown topic")
+		} else {
+			postContent.text(p.post)
 		}
 
-		postContent.text(p.post)
-		postAuthor.text(p.user)
 		postDate.text(p.date)
 		postReplies.text(replies)
 
-		if (p.uid === USER_ID) {
+		if (p.uid === USER.ID) {
 			deleteBtn.css("visibility", "")
 			deleteBtn.off("click").on("click", () => {
 				HYEUMINE.deletePost(p.id)

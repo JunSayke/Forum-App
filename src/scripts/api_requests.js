@@ -27,30 +27,33 @@ export function getPosts(page) {
 export function createUser(firstname, lastname) {
 	const path = "/forumCreateUser.php"
 	const data = { username: `${firstname} ${lastname}` }
-	let obj
 	const callback = (data) => {
-		obj = JSON.parse(data)
-		if (data.success) {
-			obj = data.user.id
+		console.log(data)
+		data = JSON.parse(data)
+		if (data.hasOwnProperty("id")) {
+			localStorage.setItem("user_id", data.id)
+			localStorage.setItem("user_name", data.username)
+			document.location.reload()
 		}
 	}
 
 	ajaxRequest(path, "POST", data, callback)
-	return obj
 }
 
 export function loginUser(firstname, lastname) {
 	const path = "/forumLogin.php"
 	const data = { username: `${firstname} ${lastname}` }
 	const callback = (data) => {
-		data = JSON.parse(data)
 		console.log(data)
+		data = JSON.parse(data)
 		if (data.success) {
-			g_userId = localStorage.setItem("uid", data.user.id)
+			localStorage.setItem("user_id", data.user.id)
+			localStorage.setItem("user_name", data.user.username)
+			document.location.reload()
 		}
 	}
 
-	ajaxRequest(path, "POST", data, callback, false)
+	ajaxRequest(path, "POST", data, callback)
 }
 
 export function newPost(userId, content) {
@@ -58,26 +61,29 @@ export function newPost(userId, content) {
 	const data = { id: userId, post: content }
 	const callback = (data) => {
 		console.log(JSON.parse(data))
+		document.location.reload()
 	}
 
-	ajaxRequest(path, "POST", data, callback, false)
+	ajaxRequest(path, "POST", data, callback)
 }
 
 export function deletePost(postId) {
 	const path = "/forumDeletePost.php"
 	const data = { id: postId }
 	const callback = (data) => {
-		console.log(data)
+		console.log(JSON.parse(data))
+		document.location.reload()
 	}
 
-	ajaxRequest(path, "GET", data, callback, false)
+	ajaxRequest(path, "GET", data, callback)
 }
 
 export function replyPost(userId, postId, content) {
 	const path = "/forumReplyPost.php"
-	const data = { uid: userId, id: postId, reply: content }
+	const data = { user_id: userId, post_id: postId, reply: content }
 	const callback = (data) => {
-		console.log(data)
+		console.log(JSON.parse(data))
+		document.location.reload()
 	}
 
 	ajaxRequest(path, "POST", data, callback)
@@ -87,7 +93,8 @@ export function deleteReply(replyId) {
 	const path = "/forumDeleteReply.php"
 	const data = { id: replyId }
 	const callback = (data) => {
-		console.log(data)
+		console.log(JSON.parse(data))
+		document.location.reload()
 	}
 
 	ajaxRequest(path, "GET", data, callback)
